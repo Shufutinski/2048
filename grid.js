@@ -8,9 +8,15 @@ export class Grid {
         this.cells = [];
         for (let i = 0; i < CELLS_COUNT; i++) {
             this.cells.push(
-                new Cell(gridElement, i % GRID_SIZE, Math.floor(i / GRID_SIZE))
+                new Cell(gridElement , i % GRID_SIZE, Math.floor(i / GRID_SIZE))
             );
             
         }
+    }
+
+    getRandomEmprtyCell() {
+        const emprtyCells = this.cells.filter(cell => cell.isEmprty());
+        const randomIndex = Math.floor(Math.random() * emprtyCells.length);
+        return emprtyCells[randomIndex];
     }
 }

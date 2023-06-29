@@ -29,8 +29,8 @@ body {
 }
 
 .tile {
-    --y: 1;
-    --x: 2;
+    --y: 0;
+    --x: 0;
     position: absolute;
     top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)));
     left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)));
