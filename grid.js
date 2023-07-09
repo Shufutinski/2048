@@ -4,19 +4,28 @@ const GRID_SIZE = 4;
 const CELLS_COUNT = GRID_SIZE * GRID_SIZE;
 
 export class Grid {
-    constructor(gridElement) {
-        this.cells = [];
-        for (let i = 0; i < CELLS_COUNT; i++) {
-            this.cells.push(
-                new Cell(gridElement , i % GRID_SIZE, Math.floor(i / GRID_SIZE))
-            );
-            
-        }
-    }
+	constructor(gridElement) {
+		this.cells = [];
+		for (let i = 0; i < CELLS_COUNT; i++) {
+			this.cells.push(
+				new Cell(gridElement , i % GRID_SIZE, Math.floor(i / GRID_SIZE))
+			);    
+		}
 
-    getRandomEmprtyCell() {
-        const emprtyCells = this.cells.filter(cell => cell.isEmprty());
-        const randomIndex = Math.floor(Math.random() * emprtyCells.length);
-        return emprtyCells[randomIndex];
-    }
+		this.cellsGroupedByColumn = this.groupCellsByColumn();
+	}
+
+	getRandomEmprtyCell() {
+		const emprtyCells = this.cells.filter(cell => cell.isEmprty());
+		const randomIndex = Math.floor(Math.random() * emprtyCells.length);
+		return emprtyCells[randomIndex];
+	}
+
+	groupCellsByColumn() {
+		return this.cells.reduce((groupedCells, cell) => {
+			groupedCells[cell.x] = groupedCells[cell.x] || [];
+			groupedCells[cell.x][cell.y] = cell;
+			return groupedCells;
+		}, []);
+	}
 }

@@ -12,7 +12,24 @@ export class Cell {
         this.linkedTile = tile;
     }
 
+    unlinkTile() {
+        this.linkedTile = null;
+    }
+
     isEmprty() {
         return !this.linkedTile;
+    }
+
+    linkTileForMerge(tile) {
+        tile.setXY(this.x, this.y);
+        this.linkedTileForMerge = tile;
+    }
+
+    hasTileForMerge() {
+        return !!this.linkedTileForMerge;
+    }
+
+    canAccept(newTile) {
+        return this.isEmprty() || (!this.hasTileForMerge() && this.linkedTile.value === newTile.value);
     }
 }
