@@ -35,6 +35,9 @@ function handleInput(event) {
             return;
     }
 
+    const newTile = new Tile(gameBoard);
+    grid.getRandomEmprtyCell().linkTile(newTile);
+
     setupInputOnce();
 }
 
