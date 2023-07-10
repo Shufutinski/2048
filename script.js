@@ -54,6 +54,12 @@ async function handleInput(event) {
     const newTile = new Tile(gameBoard);
     grid.getRandomEmprtyCell().linkTile(newTile);
 
+    if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
+        await newTile.waitForAnimationEnd();
+        alert('Try again!');
+        return;
+    }
+
     setupInputOnce();
 }
 
